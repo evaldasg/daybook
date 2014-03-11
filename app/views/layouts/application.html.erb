@@ -4,16 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Daybook" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
   </head>
 
   <body>
+  <%= render 'layouts/header' %>
+  <div class="row">
+    <div class="large-12 small-12 columns">
+      <%= render 'shared/flashes' %>
+    </div>
 
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+      <%= yield %>
+    </div>
+
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+
+    <%= render 'layouts/sidebar' %>
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+
+  <!-- Footer -->
+
+  <%= render 'layouts/footer' %>
+
   </body>
 </html>

@@ -1,0 +1,54 @@
+
+<%= form_for(@user) do |f| %>
+  <fieldset>
+    <% if @user.new_record? %>
+      <legend>Create your account</legend>
+    <% else %>
+      <legend>Edit your account</legend>
+    <% end %>
+    <%= render "shared/errors", object: @user %>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <%= f.label :name, class: ('error' if @user.errors[:name].any?) %>
+        <%= f.text_field :name, size: 40, autofocus: true %>
+        <%= content_tag(:small, @user.errors[:name].to_sentence, class: 'error') if @user.errors[:name].any? %>
+      </div>
+      <div class="large-4 small-6 columns end">
+        <%= f.label :username, class: ('error' if @user.errors[:username].any?) %>
+        <%= f.text_field :username, size: 40,
+                    placeholder: "Alphanumeric characters only!" %>
+        <%= content_tag(:small, @user.errors[:username].to_sentence, class: 'error') if @user.errors[:username].any? %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <%= f.label :email, class: ('error' if @user.errors[:email].any?) %>
+        <%= f.email_field :email, size: 40 %>
+        <%= content_tag(:small, @user.errors[:email].to_sentence, class: 'error') if @user.errors[:email].any? %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <%= f.label :password, class: ('error' if @user.errors[:password].any?) %>
+        <%= f.password_field :password, size: 40 %>
+        <%= content_tag(:small, @user.errors[:password].to_sentence, class: 'error') if @user.errors[:password].any? %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <%= f.label :password_confirmation, "Confirm Password", class: ('error' if @user.errors[:password_confirmation].any?) %>
+        <%= f.password_field :password_confirmation, size: 40 %>
+        <%= content_tag(:small, @user.errors[:password_confirmation].to_sentence, class: 'error') if @user.errors[:password_confirmation].any? %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <% if @user.new_record? %>
+          <%= f.submit "Create Account", class: "button radius" %>
+        <% else %>
+          <%= f.submit "Update Account", class: 'button [radius round]' %>
+        <% end %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

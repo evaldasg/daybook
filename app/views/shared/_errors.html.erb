@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+<div class="row">
+  <div class="large-8 small-12 columns error">
+    <h5>
+      Oops! The <%= object.class.name.titleize.downcase %> could not be saved.
+    </h5>
+    <h5>
+      Please correct the following <%= pluralize(object.errors.count, "error") %>
+    </h5>
+  </div>
+</div>
+<% end %>
